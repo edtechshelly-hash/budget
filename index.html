@@ -254,13 +254,20 @@
       padding:14px 16px;
       box-shadow:var(--shadow);
     }
-    .legend-title { font-weight:800; margin-bottom:8px; }
+    .legend-title { font-weight:800; margin-bottom:10px; }
     .legend-items { display:flex; flex-wrap:wrap; gap:10px 14px; }
-    .legend-item { display:flex; align-items:center; gap:7px; font-size:.88rem; color:var(--muted); }
-    .status-dot { width:10px; height:10px; border-radius:50%; display:inline-block; }
-    .approved-dot { background:#2e6f40; }
-    .pending-dot { background:#b07800; }
-    .unknown-dot { background:#6c737a; }
+    .legend-item { display:flex; align-items:center; gap:8px; font-size:.88rem; color:var(--muted); }
+    .legend-badge {
+      display:inline-block;
+      border:1px solid var(--border);
+      border-radius:999px;
+      padding:4px 9px;
+      font-size:.78rem;
+      color:var(--muted);
+      background:#fff;
+      font-weight:700;
+      white-space:nowrap;
+    }
 
     .footnotes {
       margin-top:18px;
@@ -337,9 +344,14 @@
     <section class="legend" aria-label="Timeline status legend">
       <div class="legend-title">Status guide</div>
       <div class="legend-items">
-        <div class="legend-item"><span class="status-dot approved-dot"></span><strong>Approved</strong> — Council approved the action.</div>
-        <div class="legend-item"><span class="status-dot pending-dot"></span><strong>Pending</strong> — Action is awaiting a later decision.</div>
-        <div class="legend-item"><span class="status-dot unknown-dot"></span><strong>Outcome Unknown</strong> — Discussion is documented, but a final action could not be verified.</div>
+        <div class="legend-item">
+          <span class="legend-badge">✅ Approved</span>
+          <span>Council approved the action.</span>
+        </div>
+        <div class="legend-item">
+          <span class="legend-badge">❓ Outcome Unknown</span>
+          <span>Discussion is documented, but a final action could not be verified.</span>
+        </div>
       </div>
     </section>
 
