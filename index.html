@@ -15,9 +15,16 @@
       --accent:#9C6B00;
       --accent-dark:#7A5300;
       --accent-soft:#F8F3E5;
-      --gold:#9C6B00;
       --shadow:0 10px 28px rgba(20,42,48,.08);
+
+      --people-bg:#eaf1fb; --people-fg:#244f86;
+      --budget-bg:#f8f0da; --budget-fg:#7a5300;
+      --infra-bg:#eaf5ec; --infra-fg:#2e6f40;
+      --safety-bg:#e9eef7; --safety-fg:#1f3c5b;
+      --contracts-bg:#f0edf8; --contracts-fg:#5b3f86;
+      --future-bg:#eef0f2; --future-fg:#586168;
     }
+
     * { box-sizing:border-box; }
     html { scroll-behavior:smooth; }
     body {
@@ -27,8 +34,8 @@
       color:var(--text);
       line-height:1.55;
     }
-    a { color:inherit; }
     .wrap { max-width:1080px; margin:0 auto; padding:0 16px 48px; }
+
     .hero {
       background:linear-gradient(135deg,var(--accent-dark),var(--accent));
       color:white;
@@ -37,18 +44,14 @@
     }
     .hero-inner { max-width:1080px; margin:0 auto; }
     .eyebrow {
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:6px 10px;
-      border:1px solid rgba(255,255,255,.35);
-      border-radius:999px;
       font-size:.82rem;
-      background:rgba(255,255,255,.08);
-      margin-bottom:14px;
+      letter-spacing:.04em;
+      text-transform:uppercase;
+      opacity:.85;
+      margin-bottom:12px;
     }
     h1 {
-      font-size:clamp(2rem,5vw,3.6rem);
+      font-size:clamp(2rem,5vw,3.5rem);
       line-height:1.05;
       margin:0;
       max-width:850px;
@@ -57,22 +60,10 @@
     .hero p {
       max-width:780px;
       margin:14px 0 0;
-      color:rgba(255,255,255,.9);
+      color:rgba(255,255,255,.92);
       font-size:1.02rem;
     }
-    .hero-note {
-      margin-top:18px;
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-    }
-    .hero-chip {
-      background:rgba(255,255,255,.12);
-      border:1px solid rgba(255,255,255,.2);
-      border-radius:999px;
-      padding:7px 10px;
-      font-size:.86rem;
-    }
+
     .stats {
       display:grid;
       grid-template-columns:repeat(2,minmax(0,1fr));
@@ -91,6 +82,7 @@
     .stat-label { color:var(--muted); font-size:.82rem; }
     .stat-value { font-weight:800; font-size:1.45rem; margin-top:4px; }
     .stat-note { color:var(--muted); font-size:.76rem; margin-top:3px; }
+
     .controls {
       margin-top:22px;
       background:var(--panel);
@@ -103,15 +95,8 @@
       display:grid;
       gap:14px;
     }
-    .section-title {
-      margin:0 0 4px;
-      font-size:1.2rem;
-    }
-    .section-sub {
-      margin:0;
-      color:var(--muted);
-      font-size:.92rem;
-    }
+    .section-title { margin:0 0 4px; font-size:1.2rem; }
+    .section-sub { margin:0; color:var(--muted); font-size:.92rem; }
     label {
       display:block;
       font-weight:700;
@@ -120,7 +105,7 @@
     }
     input {
       width:100%;
-      padding:12px 14px;
+      padding:13px 14px;
       border:1px solid var(--border);
       border-radius:12px;
       font-size:1rem;
@@ -128,9 +113,10 @@
       background:#fff;
     }
     input:focus {
-      outline:3px solid rgba(15,90,92,.18);
+      outline:3px solid rgba(156,107,0,.18);
       border-color:var(--accent);
     }
+
     .filters { display:flex; flex-wrap:wrap; gap:8px; }
     button {
       border:1px solid var(--border);
@@ -144,6 +130,7 @@
     }
     button:hover { border-color:var(--accent); transform:translateY(-1px); }
     button.active { background:var(--accent); color:white; border-color:var(--accent); }
+
     .timeline {
       position:relative;
       margin:28px 0 0 15px;
@@ -182,13 +169,18 @@
       display:inline-flex;
       align-items:center;
       gap:6px;
-      background:var(--accent-soft);
-      color:var(--accent-dark);
       border-radius:999px;
       padding:4px 9px;
       font-size:.78rem;
       font-weight:700;
     }
+    .cat-people { background:var(--people-bg); color:var(--people-fg); }
+    .cat-budget { background:var(--budget-bg); color:var(--budget-fg); }
+    .cat-infra { background:var(--infra-bg); color:var(--infra-fg); }
+    .cat-safety { background:var(--safety-bg); color:var(--safety-fg); }
+    .cat-contracts { background:var(--contracts-bg); color:var(--contracts-fg); }
+    .cat-future { background:var(--future-bg); color:var(--future-fg); }
+
     .status {
       display:inline-block;
       border:1px solid var(--border);
@@ -198,10 +190,8 @@
       color:var(--muted);
     }
     .action { margin:0; font-size:1rem; }
-    .money-highlight {
-      color:var(--gold);
-      font-weight:800;
-    }
+    .money-highlight { color:var(--accent-dark); font-weight:800; }
+
     details {
       margin-top:14px;
       border-top:1px solid var(--border);
@@ -211,7 +201,20 @@
       cursor:pointer;
       font-weight:800;
       color:var(--accent-dark);
+      list-style:none;
     }
+    summary::-webkit-details-marker { display:none; }
+    summary::before {
+      content:"▶";
+      display:inline-block;
+      margin-right:8px;
+      font-size:.78rem;
+      transition:transform .15s ease;
+    }
+    details[open] summary::before { transform:rotate(90deg); }
+    details[open] summary .show-label { display:none; }
+    details:not([open]) summary .hide-label { display:none; }
+
     .detail-grid {
       display:grid;
       gap:10px;
@@ -228,6 +231,7 @@
       margin-bottom:4px;
       font-size:.86rem;
     }
+
     .callout {
       margin-top:26px;
       background:var(--accent-soft);
@@ -238,6 +242,7 @@
     }
     .callout h2 { margin:0 0 8px; font-size:1.15rem; }
     .callout p { margin:0; }
+
     .footnotes {
       margin-top:18px;
       background:var(--panel);
@@ -255,13 +260,27 @@
       border-radius:16px;
       padding:16px;
     }
+
     @media(min-width:760px) {
-      .hero { padding:54px 24px 48px; margin:0 -16px 28px; }
+      .hero { padding:54px 24px 48px; margin:0 -24px 28px; }
       .stats { grid-template-columns:repeat(4,minmax(0,1fr)); margin-top:-54px; }
       .controls-grid { grid-template-columns:1.1fr 1fr; align-items:end; }
       .detail-grid { grid-template-columns:1fr 1fr; }
       .wrap { padding-left:24px; padding-right:24px; }
-      .hero { margin-left:-24px; margin-right:-24px; }
+    }
+
+    @media(max-width:640px) {
+      .controls {
+        position:sticky;
+        top:8px;
+        z-index:10;
+      }
+      .filters {
+        overflow-x:auto;
+        flex-wrap:nowrap;
+        padding-bottom:2px;
+      }
+      .filters button { white-space:nowrap; }
     }
   </style>
 </head>
@@ -269,14 +288,8 @@
   <div class="hero">
     <div class="hero-inner">
       <div class="eyebrow">Lincoln Budget Timeline</div>
-      <h1>2026 Council Decisions That May Shape Lincoln's 2027 Budget</h1>
-      <p>Explore major personnel, engineering, capital, and budget actions taken before the August 5 budget workshop. This is a focused starting point—not a complete list of every city expenditure or council motion.</p>
-      <div class="hero-note">
-        <span class="hero-chip">Mobile-friendly</span>
-        <span class="hero-chip">Searchable</span>
-        <span class="hero-chip">Filter by topic</span>
-        <span class="hero-chip">Expand for context</span>
-      </div>
+      <h1>2026 Budget Timeline</h1>
+      <p>Major council decisions that may influence Lincoln's 2027 budget. Search the timeline or browse by category, then open any item to see its financial impact and why it matters.</p>
     </div>
   </div>
 
@@ -306,15 +319,15 @@
       <div class="controls-grid">
         <div>
           <h2 class="section-title">Explore the timeline</h2>
-          <p class="section-sub">Search by topic or filter the council actions below.</p>
+          <p class="section-sub">Search the timeline or browse by category.</p>
         </div>
         <div>
-          <label for="searchInput">Search</label>
-          <input id="searchInput" type="search" placeholder="Try engineering, wages, police, wastewater...">
+          <label for="searchInput">Search the timeline</label>
+          <input id="searchInput" type="search" placeholder="Search engineering, wages, police, sewer...">
         </div>
       </div>
       <div style="margin-top:14px">
-        <label>Filter by topic</label>
+        <label>Browse by category</label>
         <div class="filters" id="filters"></div>
       </div>
     </section>
@@ -335,6 +348,7 @@
   <script>
     const events = [{"date": "2026-01-22", "display": "January 22", "category": "Personnel & Compensation", "action": "Approved the Utilities and Wastewater Treatment Facility Supervisor position and continued work on the Bold Minds wage study.", "impact": "Ongoing personnel costs; total amount not stated.", "why": "Started staffing and compensation changes that continued throughout 2026.", "amount": null, "status": "Approved"}, {"date": "2026-02-05", "display": "February 5", "category": "Budget & Finance", "action": "Approved transferring $346,551.91 from the former Employee Pension account to NDPERS.", "impact": "$346,551.91 transfer.", "why": "A significant movement of city funds related to employee retirement obligations. This was a transfer, not new spending.", "amount": 346551.91, "status": "Approved"}, {"date": "2026-02-05", "display": "February 5", "category": "Personnel & Compensation", "action": "Restructured the Clerk of Court position into a Police Administrative Specialist position funded through the Police Department wage budget.", "impact": "Ongoing salary and benefit costs; total amount not stated.", "why": "Changed the city staffing structure and how personnel costs are assigned.", "amount": null, "status": "Approved"}, {"date": "2026-02-05", "display": "February 5", "category": "Capital & Infrastructure", "action": "Approved the purchase of 26 LED streetlights.", "impact": "$6,500 one-time purchase.", "why": "A capital improvement that may also affect future energy and maintenance costs.", "amount": 6500, "status": "Approved"}, {"date": "2026-02-19", "display": "February 19", "category": "Capital & Infrastructure", "action": "Approved a Terracon geotechnical engineering contract for the regional wastewater facility.", "impact": "$14,450 contract.", "why": "Continued design and site work for one of the city's largest infrastructure projects.", "amount": 14450, "status": "Approved"}, {"date": "2026-03-05", "display": "March 5", "category": "Public Safety", "action": "Approved a Police Department emergency generator, contingent on grant reimbursement.", "impact": "$130,337.62 project; up to $110,000 expected from grant funding.", "why": "A major emergency-operations investment. The expected local share was about $20,337.62 before any additional costs.", "amount": 130337.62, "status": "Approved"}, {"date": "2026-03-05", "display": "March 5", "category": "Contracts & Operations", "action": "Approved a new information technology services agreement with Corporate Technologies.", "impact": "Ongoing contract cost; amount not stated in the meeting record reviewed.", "why": "Creates a continuing operating expense for city technology services.", "amount": null, "status": "Approved"}, {"date": "2026-04-09", "display": "April 9", "category": "Personnel & Compensation", "action": "Approved transferring an administrative position from the City Office to the Police Department.", "impact": "Departmental personnel-budget reallocation.", "why": "Shifted staffing resources without necessarily adding a new city employee.", "amount": null, "status": "Approved"}, {"date": "2026-04-23", "display": "April 23", "category": "Personnel & Compensation", "action": "Adopted the Bold Minds small-city minimum wage ranges, effective July 1, 2026.", "impact": "Ongoing payroll impact; total amount not stated.", "why": "Established new minimum pay ranges across city positions.", "amount": null, "status": "Approved"}, {"date": "2026-04-23", "display": "April 23", "category": "Personnel & Compensation", "action": "Directed development of a citywide step-and-grade compensation system.", "impact": "Long-term payroll impact still being developed.", "why": "Created the framework later used for the proposed 2027 compensation structure.", "amount": null, "status": "Directed"}, {"date": "2026-04-23", "display": "April 23", "category": "Personnel & Compensation", "action": "Confirmed the Utilities and Wastewater Treatment Facility Supervisor position effective April 1.", "impact": "Ongoing personnel cost.", "why": "Put the supervisory staffing change into effect during 2026.", "amount": null, "status": "Approved"}, {"date": "2026-06-04", "display": "June 4", "category": "Personnel & Compensation", "action": "Reported hiring a temporary Public Works employee through a staffing agency.", "impact": "Temporary personnel expense; amount not stated.", "why": "Added a short-term staffing cost to support city operations.", "amount": null, "status": "Reported"}, {"date": "2026-07-09", "display": "July 9", "category": "Budget & Finance", "action": "Engineering expenses were reported $5,617.54 over budget through June 30, and the council created an Engineering Budget Committee.", "impact": "$5,617.54 over budget at that point.", "why": "Triggered a formal review of engineering spending immediately before preparation of the next budget.", "amount": 5617.54, "status": "Committee created"}, {"date": "2026-07-23", "display": "July 23", "category": "Budget & Finance", "action": "Transferred $171,235.08 from Account 511 to the General Fund Professional Fees account to cover the 2026 engineering budget deficiency.", "impact": "$171,235.08 transfer.", "why": "A major midyear fund transfer used to cover engineering costs beyond the adopted budget.", "amount": 171235.08, "status": "Approved"}, {"date": "2026-07-23", "display": "July 23", "category": "Budget & Finance", "action": "Amended the 2026 budget by increasing engineering professional fees from $160,000 to $332,000.", "impact": "$172,000 increase in budget authority.", "why": "More than doubled the engineering line item during the fiscal year.", "amount": 172000, "status": "Approved"}, {"date": "2026-07-23", "display": "July 23", "category": "Personnel & Compensation", "action": "Approved the 2027 seven-grade compensation structure for city employees.", "impact": "Long-term payroll impact; exact total not provided in the transcript.", "why": "Established the compensation framework intended for the 2027 budget.", "amount": null, "status": "Approved"}, {"date": "2026-07-23", "display": "July 23", "category": "Personnel & Compensation", "action": "Applied the compensation structure to the City Auditor retroactive to April 1, 2026.", "impact": "Retroactive 2026 wage adjustment; amount not stated.", "why": "Created an immediate personnel cost before the 2027 budget year.", "amount": null, "status": "Approved"}, {"date": "2026-07-23", "display": "July 23", "category": "Personnel & Compensation", "action": "Applied the compensation structure to the Police Sergeant position retroactive to April 1, 2026.", "impact": "Retroactive 2026 wage adjustment; amount not stated.", "why": "Created an immediate personnel cost before the 2027 budget year.", "amount": null, "status": "Approved"}, {"date": "2026-07-23", "display": "July 23", "category": "Future Consideration", "action": "Discussed reducing engineering costs through better project allocation, shifting technical work in-house, and possibly hiring an in-house city engineer.", "impact": "Future budget impact unknown; no action taken.", "why": "Signals possible structural changes to how the city budgets and pays for engineering work.", "amount": null, "status": "Discussion"}, {"date": "2026-07-23", "display": "July 23", "category": "Future Consideration", "action": "Authorized gathering more information about a possible city property purchase, with preliminary discussion of roughly $1.8 million to $2.7 million for the full area.", "impact": "Potential future capital commitment; no purchase approved.", "why": "Shows a significant possible future spending decision that was not yet part of an adopted purchase.", "amount": null, "status": "Information gathering"}];
     const icons = {"Personnel & Compensation": "\ud83d\udc65", "Budget & Finance": "\ud83d\udcb0", "Capital & Infrastructure": "\ud83c\udfd7\ufe0f", "Public Safety": "\ud83d\ude93", "Contracts & Operations": "\ud83d\udda5\ufe0f", "Future Consideration": "\ud83d\udd0e"};
+    const categoryClasses = {"Personnel & Compensation": "cat-people", "Budget & Finance": "cat-budget", "Capital & Infrastructure": "cat-infra", "Public Safety": "cat-safety", "Contracts & Operations": "cat-contracts", "Future Consideration": "cat-future"};
     const categories = ["All", ...new Set(events.map(e => e.category))];
     let activeCategory = "All";
 
@@ -382,15 +396,19 @@
         const article = document.createElement("article");
         article.className = "entry";
         const icon = icons[e.category] || "•";
+        const categoryClass = categoryClasses[e.category] || "cat-future";
         article.innerHTML = `
           <div class="entry-top">
             <span class="date">${e.display}</span>
-            <span class="category">${icon} ${e.category}</span>
+            <span class="category ${categoryClass}">${icon} ${e.category}</span>
             <span class="status">${e.status}</span>
           </div>
           <p class="action">${emphasizeMoney(e.action)}</p>
           <details>
-            <summary>Financial impact and why it matters</summary>
+            <summary>
+              <span class="show-label">View financial impact</span>
+              <span class="hide-label">Hide details</span>
+            </summary>
             <div class="detail-grid">
               <div class="detail-box">
                 <strong>Financial impact</strong>
