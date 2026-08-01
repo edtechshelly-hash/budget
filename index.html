@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lincoln Budget Impact Timeline</title>
+  <meta name="description" content="A starting-point timeline of 2026 Lincoln City Council decisions that may shape the 2027 budget.">
+  <style>
+    :root {
+      --bg:#f6f7f8; --panel:#ffffff; --card:#ffffff; --text:#17202a; --muted:#5b6670;
+      --border:#d9dee3; --accent:#0f5a5c; --accentText:#ffffff; --accentBg:#e6f2f2;
+    }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:Arial, Helvetica, sans-serif; background:var(--bg); color:var(--text); line-height:1.5; }
+    .wrap { max-width:980px; margin:0 auto; padding:20px 16px 48px; }
+    header { margin-bottom:22px; }
+    h1 { font-size:clamp(1.7rem,4vw,2.5rem); line-height:1.15; margin:0 0 8px; }
+    h2 { margin:0; }
+    .sub { color:var(--muted); max-width:760px; }
+    .grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
+    @media(min-width:760px) { .grid { grid-template-columns:repeat(4,minmax(0,1fr)); } }
+    .metric,.panel,.item,.callout { background:var(--panel); border:1px solid var(--border); border-radius:16px; }
+    .metric { padding:14px; }
+    .metric .label { color:var(--muted); font-size:.86rem; }
+    .metric .value { font-size:1.35rem; font-weight:700; margin-top:4px; }
+    .metric .note { color:var(--muted); font-size:.78rem; margin-top:3px; }
+    .panel { padding:16px; margin-top:18px; }
+    label { display:block; font-weight:700; font-size:.92rem; margin-top:14px; }
+    input { width:100%; margin-top:6px; padding:12px; border:1px solid var(--border); border-radius:12px; font-size:1rem; background:#fff; color:var(--text); }
+    .filters { display:flex; flex-wrap:wrap; gap:8px; margin-top:8px; }
+    button { border:1px solid var(--border); border-radius:999px; padding:8px 11px; background:#fff; color:var(--text); font-size:.9rem; cursor:pointer; }
+    button.active { background:var(--accent); color:var(--accentText); border-color:var(--accent); }
+    .timeline { position:relative; margin:24px 0 0 12px; padding-left:25px; border-left:3px solid var(--accent); }
+    .item { position:relative; padding:16px; margin-bottom:16px; }
+    .item:before { content:""; position:absolute; left:-34px; top:23px; width:12px; height:12px; border-radius:50%; background:var(--accent); box-shadow:0 0 0 4px var(--bg); }
+    .top { display:flex; align-items:center; flex-wrap:wrap; gap:8px; }
+    .date { font-weight:700; }
+    .badge,.status { display:inline-block; border-radius:999px; padding:3px 8px; font-size:.78rem; }
+    .badge { background:var(--accentBg); }
+    .status { border:1px solid var(--border); }
+    details { margin-top:12px; }
+    summary { cursor:pointer; font-weight:700; font-size:.9rem; }
+    .detail { border-top:1px solid var(--border); margin-top:10px; padding-top:10px; font-size:.92rem; }
+    .callout { margin-top:20px; padding:16px; border-left:5px solid var(--accent); }
+    .foot { margin-top:18px; color:var(--muted); font-size:.84rem; }
+    .hide { display:none; }
+    a { color:var(--accent); }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header>
+      <h1>2026 Council Decisions That May Shape Lincoln's 2027 Budget</h1>
+      <p class="sub">A starting-point timeline highlighting major personnel, engineering, capital, and budget actions taken before the August 5 budget workshop. This is not a complete list of every city expenditure or motion.</p>
+    </header>
+
+    <section class="grid">
+      <div class="metric"><div class="label">Timeline entries shown</div><div class="value" id="eventCount">20</div></div>
+      <div class="metric"><div class="label">Known dollar actions</div><div class="value">$841,075</div><div class="note">Includes transfers and budget authority—not all new spending</div></div>
+      <div class="metric"><div class="label">Engineering budget</div><div class="value">$160K → $332K</div></div>
+      <div class="metric"><div class="label">Budget workshop</div><div class="value">Aug. 5</div><div class="note">5:00 p.m.</div></div>
+    </section>
+
+    <section class="panel">
+      <h2>Explore the timeline</h2>
+      <label for="searchInput">Search</label>
+      <input id="searchInput" type="search" placeholder="Search engineering, wages, police, wastewater...">
+      <label>Filter by topic</label>
+      <div class="filters" id="filters"></div>
+    </section>
+
+    <section class="timeline" id="timeline" aria-live="polite"></section>
+
+    <section class="callout">
+      <strong>Why this matters before the workshop</strong>
+      <p>Several personnel, engineering, capital, and budget decisions were made before the August 5 budget workshop. This timeline helps residents see how those decisions may fit into the city's broader financial plan.</p>
+    </section>
+
+    <p class="foot"><strong>About the figures:</strong> The “known dollar actions” figure combines different types of financial activity, including a pension transfer, capital purchases, contracts, an over-budget amount, a fund transfer, and increased budget authority. It should not be described as a total of new spending.</p>
+    <p class="foot"><strong>Source base:</strong> City of Lincoln 2026 council meeting records and the July 23, 2026 meeting transcript. Amounts marked “not stated” were not quantified in the records reviewed.</p>
+  </main>
+
+  <script>
+    const events = [{"date": "2026-01-22", "display": "January 22", "category": "Personnel & Compensation", "action": "Approved the Utilities and Wastewater Treatment Facility Supervisor position and continued work on the Bold Minds wage study.", "impact": "Ongoing personnel costs; total amount not stated.", "why": "Started staffing and compensation changes that continued throughout 2026.", "amount": null, "status": "Approved"}, {"date": "2026-02-05", "display": "February 5", "category": "Budget & Finance", "action": "Approved transferring $346,551.91 from the former Employee Pension account to NDPERS.", "impact": "$346,551.91 transfer.", "why": "A significant movement of city funds related to employee retirement obligations. This was a transfer, not new spending.", "amount": 346551.91, "status": "Approved"}, {"date": "2026-02-05", "display": "February 5", "category": "Personnel & Compensation", "action": "Restructured the Clerk of Court position into a Police Administrative Specialist position funded through the Police Department wage budget.", "impact": "Ongoing salary and benefit costs; total amount not stated.", "why": "Changed the city staffing structure and how personnel costs are assigned.", "amount": null, "status": "Approved"}, {"date": "2026-02-05", "display": "February 5", "category": "Capital & Infrastructure", "action": "Approved the purchase of 26 LED streetlights.", "impact": "$6,500 one-time purchase.", "why": "A capital improvement that may also affect future energy and maintenance costs.", "amount": 6500, "status": "Approved"}, {"date": "2026-02-19", "display": "February 19", "category": "Capital & Infrastructure", "action": "Approved a Terracon geotechnical engineering contract for the regional wastewater facility.", "impact": "$14,450 contract.", "why": "Continued design and site work for one of the city's largest infrastructure projects.", "amount": 14450, "status": "Approved"}, {"date": "2026-03-05", "display": "March 5", "category": "Public Safety", "action": "Approved a Police Department emergency generator, contingent on grant reimbursement.", "impact": "$130,337.62 project; up to $110,000 expected from grant funding.", "why": "A major emergency-operations investment. The expected local share was about $20,337.62 before any additional costs.", "amount": 130337.62, "status": "Approved"}, {"date": "2026-03-05", "display": "March 5", "category": "Contracts & Operations", "action": "Approved a new information technology services agreement with Corporate Technologies.", "impact": "Ongoing contract cost; amount not stated in the meeting record reviewed.", "why": "Creates a continuing operating expense for city technology services.", "amount": null, "status": "Approved"}, {"date": "2026-04-09", "display": "April 9", "category": "Personnel & Compensation", "action": "Approved transferring an administrative position from the City Office to the Police Department.", "impact": "Departmental personnel-budget reallocation.", "why": "Shifted staffing resources without necessarily adding a new city employee.", "amount": null, "status": "Approved"}, {"date": "2026-04-23", "display": "April 23", "category": "Personnel & Compensation", "action": "Adopted the Bold Minds small-city minimum wage ranges, effective July 1, 2026.", "impact": "Ongoing payroll impact; total amount not stated.", "why": "Established new minimum pay ranges across city positions.", "amount": null, "status": "Approved"}, {"date": "2026-04-23", "display": "April 23", "category": "Personnel & Compensation", "action": "Directed development of a citywide step-and-grade compensation system.", "impact": "Long-term payroll impact still being developed.", "why": "Created the framework later used for the proposed 2027 compensation structure.", "amount": null, "status": "Directed"}, {"date": "2026-04-23", "display": "April 23", "category": "Personnel & Compensation", "action": "Confirmed the Utilities and Wastewater Treatment Facility Supervisor position effective April 1.", "impact": "Ongoing personnel cost.", "why": "Put the supervisory staffing change into effect during 2026.", "amount": null, "status": "Approved"}, {"date": "2026-06-04", "display": "June 4", "category": "Personnel & Compensation", "action": "Reported hiring a temporary Public Works employee through a staffing agency.", "impact": "Temporary personnel expense; amount not stated.", "why": "Added a short-term staffing cost to support city operations.", "amount": null, "status": "Reported"}, {"date": "2026-07-09", "display": "July 9", "category": "Budget & Finance", "action": "Engineering expenses were reported $5,617.54 over budget through June 30, and the council created an Engineering Budget Committee.", "impact": "$5,617.54 over budget at that point.", "why": "Triggered a formal review of engineering spending immediately before preparation of the next budget.", "amount": 5617.54, "status": "Committee created"}, {"date": "2026-07-23", "display": "July 23", "category": "Budget & Finance", "action": "Transferred $171,235.08 from Account 511 to the General Fund Professional Fees account to cover the 2026 engineering budget deficiency.", "impact": "$171,235.08 transfer.", "why": "A major midyear fund transfer used to cover engineering costs beyond the adopted budget.", "amount": 171235.08, "status": "Approved"}, {"date": "2026-07-23", "display": "July 23", "category": "Budget & Finance", "action": "Amended the 2026 budget by increasing engineering professional fees from $160,000 to $332,000.", "impact": "$172,000 increase in budget authority.", "why": "More than doubled the engineering line item during the fiscal year.", "amount": 172000, "status": "Approved"}, {"date": "2026-07-23", "display": "July 23", "category": "Personnel & Compensation", "action": "Approved the 2027 seven-grade compensation structure for city employees.", "impact": "Long-term payroll impact; exact total not provided in the transcript.", "why": "Established the compensation framework intended for the 2027 budget.", "amount": null, "status": "Approved"}, {"date": "2026-07-23", "display": "July 23", "category": "Personnel & Compensation", "action": "Applied the compensation structure to the City Auditor retroactive to April 1, 2026.", "impact": "Retroactive 2026 wage adjustment; amount not stated.", "why": "Created an immediate personnel cost before the 2027 budget year.", "amount": null, "status": "Approved"}, {"date": "2026-07-23", "display": "July 23", "category": "Personnel & Compensation", "action": "Applied the compensation structure to the Police Sergeant position retroactive to April 1, 2026.", "impact": "Retroactive 2026 wage adjustment; amount not stated.", "why": "Created an immediate personnel cost before the 2027 budget year.", "amount": null, "status": "Approved"}, {"date": "2026-07-23", "display": "July 23", "category": "Future Consideration", "action": "Discussed reducing engineering costs through better project allocation, shifting technical work in-house, and possibly hiring an in-house city engineer.", "impact": "Future budget impact unknown; no action taken.", "why": "Signals possible structural changes to how the city budgets and pays for engineering work.", "amount": null, "status": "Discussion"}, {"date": "2026-07-23", "display": "July 23", "category": "Future Consideration", "action": "Authorized gathering more information about a possible city property purchase, with preliminary discussion of roughly $1.8 million to $2.7 million for the full area.", "impact": "Potential future capital commitment; no purchase approved.", "why": "Shows a significant possible future spending decision that was not yet part of an adopted purchase.", "amount": null, "status": "Information gathering"}];
+    const categories = ["All", ...new Set(events.map(e => e.category))];
+    let activeCategory = "All";
+    const filters = document.getElementById("filters");
+    const timeline = document.getElementById("timeline");
+    const searchInput = document.getElementById("searchInput");
+
+    function renderFilters() {
+      filters.innerHTML = "";
+      categories.forEach(category => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.textContent = category;
+        if (category === activeCategory) button.classList.add("active");
+        button.addEventListener("click", () => {
+          activeCategory = category;
+          renderFilters();
+          renderTimeline();
+        });
+        filters.appendChild(button);
+      });
+    }
+
+    function renderTimeline() {
+      const q = searchInput.value.trim().toLowerCase();
+      const filtered = events.filter(e => {
+        const categoryMatch = activeCategory === "All" || e.category === activeCategory;
+        const text = `${e.display} ${e.category} ${e.action} ${e.impact} ${e.why} ${e.status}`.toLowerCase();
+        return categoryMatch && (!q || text.includes(q));
+      });
+      document.getElementById("eventCount").textContent = filtered.length;
+      timeline.innerHTML = "";
+      if (!filtered.length) {
+        timeline.innerHTML = '<div class="item">No timeline entries match this search.</div>';
+        return;
+      }
+      filtered.forEach(e => {
+        const article = document.createElement("article");
+        article.className = "item";
+        article.innerHTML = `
+          <div class="top">
+            <span class="date">${e.display}</span>
+            <span class="badge">${e.category}</span>
+            <span class="status">${e.status}</span>
+          </div>
+          <p>${e.action}</p>
+          <details>
+            <summary>Financial impact and why it matters</summary>
+            <div class="detail">
+              <p><strong>Financial impact:</strong> ${e.impact}</p>
+              <p><strong>Why it matters:</strong> ${e.why}</p>
+            </div>
+          </details>
+        `;
+        timeline.appendChild(article);
+      });
+    }
+
+    searchInput.addEventListener("input", renderTimeline);
+    renderFilters();
+    renderTimeline();
+  </script>
+</body>
+</html>
