@@ -65,25 +65,6 @@
       font-size:1.02rem;
     }
 
-    .stats {
-      display:grid;
-      grid-template-columns:repeat(2,minmax(0,1fr));
-      gap:12px;
-      margin-top:-42px;
-      position:relative;
-      z-index:2;
-    }
-    .stat {
-      background:var(--panel);
-      border:1px solid var(--border);
-      border-radius:18px;
-      padding:16px;
-      box-shadow:var(--shadow);
-    }
-    .stat-label { color:var(--muted); font-size:.82rem; }
-    .stat-value { font-weight:800; font-size:1.45rem; margin-top:4px; }
-    .stat-note { color:var(--muted); font-size:.76rem; margin-top:3px; }
-
     .controls {
       margin-top:22px;
       background:var(--panel);
@@ -247,7 +228,7 @@
 
 
     .legend {
-      margin-top:18px;
+      margin-top:24px;
       background:var(--panel);
       border:1px solid var(--border);
       border-radius:16px;
@@ -267,6 +248,196 @@
       background:#fff;
       font-weight:700;
       white-space:nowrap;
+    }
+
+
+    .snapshot {
+      margin-top:24px;
+      background:var(--panel);
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:18px;
+      box-shadow:var(--shadow);
+    }
+    .snapshot h2 {
+      margin:0 0 6px;
+      font-size:1.25rem;
+    }
+    .snapshot-intro {
+      margin:0 0 16px;
+      color:var(--muted);
+      font-size:.93rem;
+    }
+    .prelim-badge {
+      display:inline-block;
+      margin-bottom:10px;
+      padding:4px 9px;
+      border-radius:999px;
+      background:#fff4d6;
+      color:#7A5300;
+      border:1px solid #e7cf8a;
+      font-size:.78rem;
+      font-weight:800;
+    }
+    .prairie-spotlight {
+      background:#fffaf0;
+      border:1px solid #e5d1a4;
+      border-left:6px solid var(--accent);
+      border-radius:16px;
+      padding:16px;
+      margin-bottom:16px;
+    }
+    .prairie-spotlight h3 {
+      margin:0 0 8px;
+      font-size:1.08rem;
+    }
+    .prairie-grid {
+      display:grid;
+      gap:10px;
+      margin-top:12px;
+    }
+    .prairie-metric {
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:12px;
+      padding:12px;
+    }
+    .prairie-metric .label {
+      color:var(--muted);
+      font-size:.8rem;
+    }
+    .prairie-metric .value {
+      font-size:1.18rem;
+      font-weight:800;
+      margin-top:3px;
+    }
+    .budget-groups {
+      display:grid;
+      gap:12px;
+    }
+    .budget-group {
+      border:1px solid var(--border);
+      border-radius:14px;
+      background:#fff;
+      overflow:hidden;
+    }
+    .budget-group summary {
+      padding:14px 16px;
+      color:var(--text);
+      font-weight:800;
+      cursor:pointer;
+      list-style:none;
+      border:0;
+      margin:0;
+    }
+    .budget-group summary::-webkit-details-marker { display:none; }
+    .budget-group summary::before {
+      content:"▶";
+      display:inline-block;
+      margin-right:8px;
+      font-size:.75rem;
+      color:var(--accent-dark);
+      transition:transform .15s ease;
+    }
+    .budget-group[open] summary::before { transform:rotate(90deg); }
+    .budget-group-body {
+      border-top:1px solid var(--border);
+      padding:12px 16px 15px;
+    }
+    .budget-group-body ul {
+      margin:0;
+      padding-left:20px;
+    }
+    .budget-group-body li {
+      margin:6px 0;
+    }
+    .budget-note {
+      margin-top:12px;
+      color:var(--muted);
+      font-size:.84rem;
+    }
+    @media(min-width:760px) {
+      .prairie-grid { grid-template-columns:repeat(3,minmax(0,1fr)); }
+      .budget-groups { grid-template-columns:repeat(2,minmax(0,1fr)); }
+    }
+
+
+    .deep-dive {
+      margin-top:24px;
+      background:var(--panel);
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:18px;
+      box-shadow:var(--shadow);
+    }
+    .deep-dive h2 { margin:0 0 6px; font-size:1.25rem; }
+    .deep-dive-intro { margin:0 0 16px; color:var(--muted); font-size:.93rem; }
+    .budget-doc-links {
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin:0 0 16px;
+    }
+    .budget-doc-link {
+      display:inline-block;
+      text-decoration:none;
+      border:1px solid var(--border);
+      border-radius:999px;
+      padding:8px 12px;
+      background:#fff;
+      font-size:.86rem;
+      font-weight:700;
+    }
+    .budget-doc-link:hover { border-color:var(--accent); }
+    .compare-wrap {
+      overflow-x:auto;
+      border:1px solid var(--border);
+      border-radius:14px;
+      background:#fff;
+    }
+    .compare-table {
+      width:100%;
+      min-width:720px;
+      border-collapse:collapse;
+    }
+    .compare-table th,
+    .compare-table td {
+      padding:11px 12px;
+      text-align:right;
+      border-bottom:1px solid var(--border);
+      vertical-align:top;
+    }
+    .compare-table th:first-child,
+    .compare-table td:first-child { text-align:left; }
+    .compare-table thead th {
+      background:#f8fafb;
+      font-size:.82rem;
+    }
+    .compare-table tbody tr:last-child td { border-bottom:0; }
+    .prelim-col { background:#fffaf0; }
+    .change-notes {
+      display:grid;
+      gap:10px;
+      margin-top:14px;
+    }
+    .change-note {
+      border:1px solid var(--border);
+      border-radius:13px;
+      padding:12px 14px;
+      background:#fff;
+    }
+    .change-note strong { display:block; margin-bottom:3px; }
+    .change-note p { margin:0; color:var(--muted); font-size:.88rem; }
+    .comparison-caution {
+      margin-top:12px;
+      padding:11px 13px;
+      border-radius:12px;
+      background:#f8fafb;
+      color:var(--muted);
+      font-size:.84rem;
+    }
+    @media(min-width:760px) {
+      .change-notes { grid-template-columns:repeat(2,minmax(0,1fr)); }
     }
 
     .footnotes {
@@ -289,7 +460,6 @@
 
     @media(min-width:760px) {
       .hero { padding:54px 24px 48px; margin:0 -24px 28px; }
-      .stats { grid-template-columns:repeat(4,minmax(0,1fr)); margin-top:-54px; }
       .controls-grid { grid-template-columns:1.1fr 1fr; align-items:end; }
       .detail-grid { grid-template-columns:1fr 1fr; }
       .wrap { padding-left:24px; padding-right:24px; }
@@ -320,26 +490,6 @@
   </div>
 
   <main class="wrap">
-    <section class="stats" aria-label="Budget timeline summary">
-      <div class="stat">
-        <div class="stat-label">Timeline entries shown</div>
-        <div class="stat-value" id="eventCount">21</div>
-      </div>
-      <div class="stat">
-        <div class="stat-label">Known dollar actions</div>
-        <div class="stat-value">$841,075</div>
-        <div class="stat-note">Includes transfers and budget authority—not all new spending</div>
-      </div>
-      <div class="stat">
-        <div class="stat-label">Engineering budget</div>
-        <div class="stat-value">$160K → $332K</div>
-      </div>
-      <div class="stat">
-        <div class="stat-label">Budget workshop</div>
-        <div class="stat-value">Aug. 5</div>
-        <div class="stat-note">5:00 p.m.</div>
-      </div>
-    </section>
 
     <section class="legend" aria-label="Timeline status legend">
       <div class="legend-title">Status guide</div>
@@ -356,6 +506,248 @@
           <span class="legend-badge">❓ Outcome Unknown</span>
           <span>Discussion is documented, but a final action could not be verified.</span>
         </div>
+      </div>
+    </section>
+
+
+    <section class="snapshot" aria-labelledby="prelim-budget-title">
+      <span class="prelim-badge">2027 Working Preliminary Budget</span>
+      <h2 id="prelim-budget-title">What the newest budget documents show</h2>
+      <p class="snapshot-intro">These figures are proposed 2027 budget amounts from the working preliminary budget. They are not presented here as final adopted figures.</p>
+
+      <div class="prairie-spotlight">
+        <h3>💰 Prairie Dog Fund Spotlight</h3>
+        <p>The working preliminary budget shows a large Prairie Dog Fund balance and a proposed transfer out, while no 2027 infrastructure-project expenditure is listed on the fund worksheet.</p>
+        <div class="prairie-grid">
+          <div class="prairie-metric">
+            <div class="label">Projected 2027 beginning balance</div>
+            <div class="value">$3,292,727.39</div>
+          </div>
+          <div class="prairie-metric">
+            <div class="label">Proposed 2027 transfer out</div>
+            <div class="value">$123,632.96</div>
+          </div>
+          <div class="prairie-metric">
+            <div class="label">Projected 2027 year-end balance</div>
+            <div class="value">$3,169,094.43</div>
+          </div>
+        </div>
+        <p class="budget-note">The same worksheet estimates $71,920.37 in state-treasurer revenue and $40,000 in interest for 2027.</p>
+      </div>
+
+      <div class="budget-groups">
+        <details class="budget-group">
+          <summary>🏗️ Buildings & Major Capital</summary>
+          <div class="budget-group-body">
+            <ul>
+              <li><strong>$1.75 million</strong> listed for a purchase in the Building & Maintenance Fund.</li>
+              <li><strong>$1 million</strong> listed for a building.</li>
+              <li><strong>$50,000</strong> in engineering fees.</li>
+              <li>Total proposed appropriations for this fund: <strong>$2.8 million</strong>.</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="budget-group">
+          <summary>💧 Wastewater Treatment Plant</summary>
+          <div class="budget-group-body">
+            <ul>
+              <li><strong>$22.2 million</strong> bond revenue is shown for 2027.</li>
+              <li><strong>$29,262,126.84</strong> in project costs is proposed.</li>
+              <li>The worksheet shows a projected beginning balance of <strong>$7,062,126.84</strong>.</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="budget-group">
+          <summary>🚧 Highway / Public Works</summary>
+          <div class="budget-group-body">
+            <ul>
+              <li>Salaries: <strong>$75,000 → $121,000</strong>.</li>
+              <li>Health insurance: <strong>$13,000 → $32,400</strong>.</li>
+              <li>Repairs & parts: <strong>$15,000 → $60,000</strong>.</li>
+              <li>Machine/equipment: <strong>$40,000</strong>.</li>
+              <li>Tar/mastic equipment: <strong>$110,000</strong>.</li>
+              <li>Chip seal tar: <strong>$55,000</strong>.</li>
+              <li>Curb repair: <strong>$16,000</strong>.</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="budget-group">
+          <summary>🚓 Public Safety</summary>
+          <div class="budget-group-body">
+            <ul>
+              <li>Police wages: <strong>$470,000 → $519,250</strong>.</li>
+              <li>Health insurance: <strong>$73,000 → $116,811</strong>.</li>
+              <li>Equipment: <strong>$40,000 → $72,000</strong>.</li>
+              <li>Vehicle maintenance: <strong>$12,500 → $20,000</strong>.</li>
+              <li>Vehicle allowance: <strong>$58,000 → $25,000</strong>.</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="budget-group">
+          <summary>🚰 Water Fund</summary>
+          <div class="budget-group-body">
+            <ul>
+              <li>Salaries: <strong>$140,000 → $292,000</strong>.</li>
+              <li>Health insurance: <strong>$42,000 → $85,000</strong>.</li>
+              <li>Repairs & maintenance: <strong>$20,000 → $100,000</strong>.</li>
+              <li>Engineering/legal fees: <strong>$16,000</strong>.</li>
+              <li>Engineer setup: <strong>$5,000</strong>.</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="budget-group">
+          <summary>🛠️ Sewer Fund</summary>
+          <div class="budget-group-body">
+            <ul>
+              <li>Salaries: <strong>$134,000 → $191,000</strong>.</li>
+              <li>Health insurance: <strong>$25,000 → $54,200</strong>.</li>
+              <li>Engineering: <strong>$16,000</strong>.</li>
+              <li>Engineer setup: <strong>$5,000</strong>.</li>
+              <li>Jetter system: <strong>$30,000</strong>.</li>
+              <li>Sewer camera: <strong>$5,000</strong>.</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="budget-group">
+          <summary>🚛 Garbage Fund</summary>
+          <div class="budget-group-body">
+            <ul>
+              <li>Roll-off truck: <strong>$60,000</strong>.</li>
+              <li>New grapple: <strong>$10,000</strong>.</li>
+              <li>Salaries: <strong>$57,400 → $81,000</strong>.</li>
+              <li>Health insurance: <strong>$11,500 → $23,500</strong>.</li>
+              <li>Engineering fees: <strong>$16,000</strong>.</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="budget-group">
+          <summary>👥 General Fund & Compensation</summary>
+          <div class="budget-group-body">
+            <ul>
+              <li>General Fund final appropriation shown: <strong>$1,668,511</strong>.</li>
+              <li>Estimated levy: <strong>$1,434,337.42</strong>, or about <strong>66.25 mills</strong>.</li>
+              <li>Engineering professional fees are shown at <strong>$46,000</strong> for 2027 after a much higher 2026 estimate.</li>
+              <li>Clerk of Court wages are listed at <strong>$36,000</strong>.</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="budget-group">
+          <summary>🌳 Planning, Forestry & Economic Development</summary>
+          <div class="budget-group-body">
+            <ul>
+              <li>Planning & Zoning: <strong>$32,000</strong> total proposed appropriations, including $10,000 engineer fees and $5,000 engineer setup.</li>
+              <li>Forestry: <strong>$33,500</strong> total proposed appropriations, including a $10,000 air curtain burner and $10,000 Dream Project.</li>
+              <li>Economic Development: <strong>$30,200</strong> total proposed appropriations.</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="budget-group">
+          <summary>💡 Street Lights & Other Utility Funds</summary>
+          <div class="budget-group-body">
+            <ul>
+              <li>Street Lights Fund: <strong>$67,100</strong> total proposed appropriations.</li>
+              <li>Street poles: <strong>$8,000</strong>.</li>
+              <li>Storm Sewer Maintenance: <strong>$10,000</strong> proposed repairs.</li>
+              <li>Sewer Backup Fund shows no proposed expenditures and a projected year-end balance of <strong>$81,801.68</strong>.</li>
+            </ul>
+          </div>
+        </details>
+      </div>
+    </section>
+
+
+    <section class="deep-dive" aria-labelledby="deep-dive-title">
+      <span class="prelim-badge">3-Year Budget Comparison</span>
+      <h2 id="deep-dive-title">Want to dig deeper? Compare 2025, 2026 and the 2027 preliminary budget</h2>
+      <p class="deep-dive-intro">This section puts comparable headline figures side by side so residents can see where the budget is changing. The 2025 and 2026 columns are adopted budgets; the 2027 column is the current working preliminary budget.</p>
+
+      <div class="budget-doc-links" aria-label="Budget documents">
+        <a class="budget-doc-link" href="budget-2025.pdf" target="_blank" rel="noopener">📄 Open 2025 Budget</a>
+        <a class="budget-doc-link" href="budget-2026.pdf" target="_blank" rel="noopener">📄 Open 2026 Final Budget</a>
+        <a class="budget-doc-link" href="budget-2027-preliminary.pdf" target="_blank" rel="noopener">📄 Open 2027 Preliminary Budget</a>
+      </div>
+
+      <div class="compare-wrap">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>Budget measure</th>
+              <th>2025 Final</th>
+              <th>2026 Final</th>
+              <th class="prelim-col">2027 Preliminary</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>General Fund appropriation</strong></td>
+              <td>$1,690,125</td>
+              <td>$1,732,974.29</td>
+              <td class="prelim-col">$1,668,511</td>
+            </tr>
+            <tr>
+              <td><strong>General Fund amount levied</strong></td>
+              <td>$1,302,014.17</td>
+              <td>$1,376,885</td>
+              <td class="prelim-col">$1,434,337.42</td>
+            </tr>
+            <tr>
+              <td><strong>Estimated mills</strong></td>
+              <td>72.23</td>
+              <td>68.74</td>
+              <td class="prelim-col">66.25</td>
+            </tr>
+            <tr>
+              <td><strong>Police Department wages</strong></td>
+              <td>$494,000</td>
+              <td>$455,306.25</td>
+              <td class="prelim-col">$519,250</td>
+            </tr>
+            <tr>
+              <td><strong>General Fund engineering professional fees</strong></td>
+              <td>$150,000</td>
+              <td>$160,000*</td>
+              <td class="prelim-col">$46,000</td>
+            </tr>
+            <tr>
+              <td><strong>Prairie Dog Fund — infrastructure project appropriation</strong></td>
+              <td>$1,997,556.92</td>
+              <td>$1,997,556.92</td>
+              <td class="prelim-col">$0 listed; $123,632.96 transfer out</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="change-notes">
+        <div class="change-note">
+          <strong>💰 Levy continues to rise</strong>
+          <p>The General Fund levy increases from about $1.30 million in 2025 to $1.38 million in 2026 and $1.43 million in the 2027 preliminary budget, even while the estimated mill rate declines.</p>
+        </div>
+        <div class="change-note">
+          <strong>👮 Police wages change direction</strong>
+          <p>The budgeted PD wage line fell from $494,000 in 2025 to $455,306.25 in 2026, then rises to $519,250 in the 2027 preliminary budget.</p>
+        </div>
+        <div class="change-note">
+          <strong>🏗️ Engineering is a major comparison point</strong>
+          <p>The adopted 2026 budget began with $160,000 for General Fund engineering professional fees, but the council later amended that line to $332,000. The 2027 preliminary General Fund line is $46,000, with additional engineering amounts appearing in other funds.</p>
+        </div>
+        <div class="change-note">
+          <strong>🌾 Prairie Dog Fund structure changes</strong>
+          <p>The 2025 and 2026 budgets each showed a $1,997,556.92 infrastructure-project appropriation. The 2027 preliminary worksheet instead shows no infrastructure-project expenditure and lists a $123,632.96 transfer out.</p>
+        </div>
+      </div>
+
+      <div class="comparison-caution">
+        <strong>Comparison note:</strong> Budget structure and account placement change from year to year. For example, some 2027 legal and engineering costs are shown in different funds or categories, so not every department total is directly comparable. This table focuses on lines that can be traced across the documents and flags important structural changes.
       </div>
     </section>
 
@@ -391,7 +783,7 @@
 
     <section class="footnotes">
       <p><strong>About the figures:</strong> The “known dollar actions” figure combines different kinds of financial activity, including a pension transfer, capital purchases, contracts, an over-budget amount, a fund transfer, and increased budget authority. It should not be described as a total of new spending.</p>
-      <p><strong>Source base:</strong> City of Lincoln 2026 council meeting records, the July 23, 2026 meeting transcript, and the August 6, 2026 agenda packet. Amounts marked “not stated” were not quantified in the records reviewed.</p>
+      <p><strong>Source base:</strong> City of Lincoln 2026 council meeting records, the July 23, 2026 meeting transcript, the August 6, 2026 agenda packet, the 2025 Annual Budget, the 2026 Final Budget, and the 2027 Working Preliminary Budget. Amounts marked “not stated” were not quantified in the records reviewed.</p>
     </section>
   </main>
 
@@ -434,7 +826,7 @@
         return categoryMatch && (!q || text.includes(q));
       });
 
-      document.getElementById("eventCount").textContent = filtered.length;
+      
       timeline.innerHTML = "";
 
       if (!filtered.length) {
